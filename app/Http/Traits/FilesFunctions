@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Http\Traits;
+
+use Exception;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use League\Flysystem\Visibility;
+use Illuminate\Support\Facades\Storage;
+
+trait Filesfunctions
+{
+
+
+    public function  getPath($file){
+
+        $originalName = $file->getClientOriginalName();
+        if (preg_match('/\.[^.]+\./', $originalName)) {
+            throw new Exception(trans('general.notAllowedAction'), 403);
+        }
+
+        $fileName = Str::random(32);
+        $mime_type = $file->getClientMimeType();
+        $type = explode('/', $mime_type);
+
+        
+        $FolderPath = Storage::disk('public')->put('files', $file, [
+            'visibility' => Visibility::PUBLIC,
+        ]);
+       
+
+        return $documentPath;
+    }
+
+
+
+}
