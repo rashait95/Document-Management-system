@@ -45,9 +45,10 @@ class DocumentController extends Controller
         DB::beginTransaction();
         $documentPath=$this->getPath($request->file);
         $document = Document::create([
-            'name'       =>$request->title,
+            'name'=>$request->title,
             'size' =>$request->size,
-            'document_path'=>$documentPath,
+            'document_path'=>$request->documentPath,
+            'user_id' =>$request->user_id,
             'folder_id' =>$request->folder_id,
         ]);
 
@@ -84,6 +85,7 @@ class DocumentController extends Controller
     public function update(Request $request, Document $document)
     {
         //
+        
     }
 
     /**

@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FolderController;
 use App\Http\Controllers\DocumentController;
@@ -45,5 +46,15 @@ Route::middleware('auth:api')->controller(DocumentController::class)->group(func
   // Route::post('/zipfolder/{folder}', 'zipfolder')->name('zipfolder')->middleware('auth:sanctum');
    //Route::get('/downloadfolder/{folder}', 'download')->name('downloadfolder')->middleware('auth:sanctum');
     Route::delete('/deletedocument/{document}', 'destroy')->name('deletedocument')->middleware('auth:sanctum');
+});
+
+Route::middleware('auth:api')->controller(TagController::class)->group(function () {
+
+    Route::get('/tags', 'index')->name('tags');
+    Route::get('/retrieveTags/{tag}', 'retrieve_tags')->name('retrieveTags');
+    Route::post('/upload', 'store')->name('upload')->middleware('auth:sanctum');
+  // Route::post('/zipfolder/{folder}', 'zipfolder')->name('zipfolder')->middleware('auth:sanctum');
+   //Route::get('/downloadfolder/{folder}', 'download')->name('downloadfolder')->middleware('auth:sanctum');
+    Route::delete('/deleteTag/{tag}', 'destroy')->name('deleteTag')->middleware('auth:sanctum');
 });
 

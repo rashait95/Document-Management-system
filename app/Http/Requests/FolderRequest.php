@@ -22,7 +22,12 @@ class FolderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'folder_path' => 'required|mimes:jpeg,jpg,png,gif,pdf,doc,docx,xls,xlsx|max:2048',
+            'name'=>'required |string',
+            'size'=>'required|bigint',
+            'folder_path' => 'required|file|max:2048',
+            'parent_id' =>'required|integer',
+         
+            
            
         
             

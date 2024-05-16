@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('folders', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('size');
+            $table->unsignedBigInteger('size')->nullable();
             $table->string('folder_path');
             $table->foreignId('folder_id')->constrained();
           //  $table->foreignId('child_id')->constrained();

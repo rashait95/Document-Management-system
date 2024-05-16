@@ -13,7 +13,6 @@ class Folder extends Model
         'name',
         'size ',
         'folder_path',
-        'created_at',
         'parent_id',
     ];
 

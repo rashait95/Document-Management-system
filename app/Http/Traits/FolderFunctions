@@ -12,24 +12,22 @@ trait Filesfunctions
 {
 
 
-    public function  getPath($file){
+    public function  getPath($folder){
 
-        $originalName = $file->getClientOriginalName();
+        $originalName = $folder->getClientOriginalName();
         if (preg_match('/\.[^.]+\./', $originalName)) {
             throw new Exception(trans('general.notAllowedAction'), 403);
         }
 
         $fileName = Str::random(32);
-        $mime_type = $file->getClientMimeType();
-        $type = explode('/', $mime_type);
-
+       
         
-        $documentPath= Storage::disk('public')->put('files', $file, [
+        $FolderPath= Storage::disk('public')->put('folders', $folder, [
             'visibility' => Visibility::PUBLIC,
         ]);
        
 
-        return $documentPath;
+        return $FolderPath;
     }
 
 
